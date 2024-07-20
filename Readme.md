@@ -1,5 +1,5 @@
-To start a set up : 
-1.npm init
+## To start a set up : 
+1. npm init
 2. to store images public folder (whole) 
 3. .gitignore (for ignoreing some file to upload on git) file created directly - content from git ignore generators
 4. .env file
@@ -9,7 +9,6 @@ command = touch app.js, constants.js  index.js
 7. changing type of importing in package.json
 8. installing nodemon and change package.json  - > by adding dev in script
 9. making folders under server
-
 10. setting up app.js file
 11.  to connect backend with frontend - cors npm package is used => cors is middleware
 - to congiure cors : 
