@@ -1,4 +1,4 @@
-To start a set up : 
+## To start a set up : 
 1.npm init
 2. to store images public folder (whole) 
 3. .gitignore (for ignoreing some file to upload on git) file created directly - content from git ignore generators
@@ -27,7 +27,7 @@ app.use(cookieParser);
 13. Create wrapper for asynchronous operations beacause we use async syntax everytime. = asyncHanddler
 14. Seting up ApiError and Apiresponse => refer mode js documentation for node js error
 
-#GitHub commands that used : 
+## GitHub commands that used : 
 
 1. git init : to initialize repository
 2. git add . : add all files 
@@ -37,7 +37,7 @@ app.use(cookieParser);
 6. git push -u origin main : to set upstring and also use for push
 
 
-#package.json :
+## package.json :
 There are two types of importing =>
 - i] using import : import statement
 - ii] using common js : require syntax
@@ -47,7 +47,7 @@ Hence to change importing style to module based ::
 - "type" : "module",
 
 
-#Dotenv set up :
+## Dotenv set up :
 As we are using import style for importing. But problem is that dotenv currently support only for require() syntax hence we need to make some changes in package.json as experimental feature for dotenv =>
 
 "scripts": {
@@ -73,10 +73,23 @@ This flag enables experimental support for importing JSON files as ES modules. T
  This is the entry point of your application. nodemon will start and monitor this file, restarting the application whenever changes are detected in any of the files in your project.
 
 
-#Connect Database :
+## Connect Database :
 connect() is used to connect DB
 
-#Critical Topics / Important Aspects: 
+
+## cors package :
+- What is CORS?
+    Cross-Origin Resource Sharing (CORS): A security feature that allows web applications to request resources from a different domain than the one that served the web page. This is essential for modern web applications that need to interact with APIs hosted on different domains.
+  
+   CORS is a mechanism that allows a web application running on one domain to request resources from a server running on a different domain. This is essential for modern web applications that interact with APIs hosted on different domains.
+
+  - Purpose of cors Package
+      Enable Cross-Origin Requests: Allows your server to accept requests from different origins (domains, schemes, or ports). This is particularly important for single-page applications (SPAs) that interact with RESTful APIs hosted on different servers.
+
+  - Configure CORS Policies:
+       Provides a way to configure and control the CORS settings for your application. You can specify which origins are allowed, what HTTP methods are permitted, and what headers can be used in the requests.
+
+## Critical Topics / Important Aspects: 
 - express documention
 - express listners
 - process (given by express) / Management
