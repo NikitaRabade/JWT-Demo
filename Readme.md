@@ -27,7 +27,7 @@ app.use(cookieParser);
 13. Create wrapper for asynchronous operations beacause we use async syntax everytime. = asyncHanddler
 14. Seting up ApiError and Apiresponse => refer mode js documentation for node js error
 
-#GitHub commands that used : 
+## GitHub commands that used : 
 
 1. git init : to initialize repository
 2. git add . : add all files 
@@ -37,7 +37,7 @@ app.use(cookieParser);
 6. git push -u origin main : to set upstring and also use for push
 
 
-#package.json :
+## package.json :
 There are two types of importing =>
 - i] using import : import statement
 - ii] using common js : require syntax
@@ -47,7 +47,7 @@ Hence to change importing style to module based ::
 - "type" : "module",
 
 
-#Dotenv set up :
+## Dotenv set up :
 As we are using import style for importing. But problem is that dotenv currently support only for require() syntax hence we need to make some changes in package.json as experimental feature for dotenv =>
 
 "scripts": {
@@ -73,10 +73,10 @@ This flag enables experimental support for importing JSON files as ES modules. T
  This is the entry point of your application. nodemon will start and monitor this file, restarting the application whenever changes are detected in any of the files in your project.
 
 
-#Connect Database :
+## Connect Database :
 connect() is used to connect DB
 
-#Critical Topics / Important Aspects: 
+## Critical Topics / Important Aspects: 
 - express documention
 - express listners
 - process (given by express) / Management
