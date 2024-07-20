@@ -1,1 +1,1 @@
-export const DB_NAME = "YouTubeData"
+export const DB_NAME = "JWTDemoData"
