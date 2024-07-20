@@ -75,24 +75,6 @@ This flag enables experimental support for importing JSON files as ES modules. T
 ## Connect Database :
 connect() is used to connect DB
 
-## cors package :
-- What is CORS?
-    Cross-Origin Resource Sharing (CORS): A security feature that allows web applications to request resources from a different domain than the one that served the web page. This is essential for modern web applications that need to interact with APIs hosted on different domains.
-  
-   CORS is a mechanism that allows a web application running on one domain to request resources from a server running on a different domain. This is essential for modern web applications that interact with APIs hosted on different domains.
-
-  - Purpose of cors Package
-      Enable Cross-Origin Requests: Allows your server to accept requests from different origins (domains, schemes, or ports). This is particularly important for single-page applications (SPAs) that interact with RESTful APIs hosted on different servers.
-
-  - Configure CORS Policies:
-       Provides a way to configure and control the CORS settings for your application. You can specify which origins are allowed, what HTTP methods are permitted, and what headers can be used in the requests.
-
-- Why CORS is Needed
-    By default, web browsers enforce the same-origin policy, which restricts web pages from making requests to a different domain than the one that served the web page. This is a security feature to prevent malicious sites from reading sensitive data from other sites. However, there are legitimate use cases for cross-origin requests, such as:
-
-    - Accessing an API hosted on a different domain.
-    - Loading resources like fonts or scripts from a CDN.
-    - Interacting with services like authentication providers or third-party APIs.
 
 ## Critical Topics / Important Aspects: 
 - express documention
