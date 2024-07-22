@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
-import express from "express";
+import { app } from "./app.js";
 import connectDB from "./db/config.js";
 
 dotenv.config({
     path : "../env"
 })
 
-const app = express();
+
 
 connectDB()                                  
 .then(() =>{
@@ -24,3 +24,4 @@ connectDB()
 /*
 connectDB() => asynchronous function will return promise hence after connecting do some work depend on 
 successfully connecting db or error while connecting
+*/

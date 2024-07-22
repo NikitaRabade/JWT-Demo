@@ -1,7 +1,15 @@
+import dotenv from "dotenv"
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { urlencoded } from "body-parser";
+//import { urlencoded } from "body-parser";
+
+dotenv.config({
+    path : "../env"
+});
+
+import bodyParser from 'body-parser';
+const { urlencoded } = bodyParser;
 
 const app = express();
 
@@ -16,6 +24,15 @@ app.use(urlencoded({extended : true, limit : "16kb"}));
 
 app.use(express.static("public"));
 
-app.use(cookieParser);
+app.use(cookieParser());
+
+
+//import routes
+import userRouter from "./routes/user.routes.js";
+
+
+//routes declartion
+app.use("/users", userRouter);
+//https://localhost:3000/users => makes primary route for all userRouter
 
 export { app };

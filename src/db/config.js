@@ -9,7 +9,7 @@ dotenv.config({
 
 const app = express();
 
-console.log(`${process.env.MONGODB_URI}/${DB_NAME}`);
+
 
 const connectDB = async () => {
     try{
@@ -17,6 +17,7 @@ const connectDB = async () => {
         //adding lister event to app beacause if express app doesnt connect to db
         //hence to listen error on event is used here
         //console.log(connectionInstance);
+        console.log("MongoDb connected !! ");
         app.on("error", (error) => {
             console.log("ERROR while connect to express : ", error);
             throw error;

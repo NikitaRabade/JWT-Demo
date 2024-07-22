@@ -25,6 +25,7 @@ app.use(cookieParser);
 
 13. Create wrapper for asynchronous operations beacause we use async syntax everytime. = asyncHanddler
 14. Seting up ApiError and Apiresponse => refer mode js documentation for node js error
+15. Demo try : make controller(handling code for particular route) -> router(defining endpoint and mapping endpoint to controller ) -> mapping in app.js (mapping of routers)
 
 ## GitHub commands that used : 
 
