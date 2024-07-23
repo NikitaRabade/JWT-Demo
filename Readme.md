@@ -26,6 +26,33 @@ app.use(cookieParser);
 13. Create wrapper for asynchronous operations beacause we use async syntax everytime. = asyncHanddler
 14. Seting up ApiError and Apiresponse => refer mode js documentation for node js error
 15. Demo try : make controller(handling code for particular route) -> router(defining endpoint and mapping endpoint to controller ) -> mapping in app.js (mapping of routers)
+16. Defining register controller by considering following flow : 
+      i]    get user details from frontend
+      ii]   validation - not empty
+      iii]  check if user already exists: username, email
+      iv]   check for images, check for avatar
+      v]    upload them to cloudinary, avatar
+      vi]   create user object - create entry in db
+      vii]  remove password and refresh token field from response
+      viii] check for user creation
+      ix]   return res
+
+      - req.files having object of feilds :  {
+      fieldname: 
+      originalname: 
+      encoding:
+      mimetype: 
+      destination: 
+      filename: 
+      path: 
+      size: 
+    }
+
+    - cloudanary returns response json object : {
+      public_id, width, height, url, secure_url,bytes, original_filename, format (jpg or png), created_at, resource_type,
+      tags,
+    }
+
 
 ## GitHub commands that used : 
 

@@ -35,10 +35,18 @@ const registerUser = asyncHandler( async (req, res) => {
 
     //for multer check
     //get path of that uploaded image in server
-    console.log(req.files);
+    //console.log("req.files contain" , req.files);
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    //const coverImageLocalPath = req.files?.coverImage[0]?.path;
+
+    let coverImageLocalPath;
+
+    //1. check req.files is it or not 2. if yes then check there is array for coverImage or not. 
+    //3. if yes then check size is > 0 or not.
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0){
+        coverImageLocalPath = req.files.coverImage[0].path;
+    }
 
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar file is required")
@@ -46,6 +54,7 @@ const registerUser = asyncHandler( async (req, res) => {
 
     const avatar = await uploadOnCloudinary(avatarLocalPath);
     const coverImage = await uploadOnCloudinary(coverImageLocalPath);
+    //console.log("cloudnary gives us response object which contain : ", avatar);
 
     const user = await User.create({
         fullName,
