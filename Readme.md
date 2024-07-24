@@ -115,7 +115,7 @@ A refresh token is saved both on the client side and server side (in the databas
             - if not match -> give error mssage
             - if match -> generate access and refresh token 
             - send cookies -> token
-    ## Implementing Secure Token Management with HTTP Cookies in Node.js :
+   ## Implementing Secure Token Management with HTTP Cookies in Node.js :
         - generate access token and refresh token , adding this methods to model =>
               jwt.sign() method is used for generating jwt token which takes 3 parameter payload, secretOrPrivateKey, options as json object that can be expiry time : 
                   algorithm: Specifies the signing algorithm (default is HS256).
