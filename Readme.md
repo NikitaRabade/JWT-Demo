@@ -115,17 +115,17 @@ A refresh token is saved both on the client side and server side (in the databas
             - if not match -> give error mssage
             - if match -> generate access and refresh token 
             - send cookies -> token
-   ## Implementing Secure Token Management with HTTP Cookies in Node.js :
-        - generate access token and refresh token , adding this methods to model =>
-              jwt.sign() method is used for generating jwt token which takes 3 parameter payload, secretOrPrivateKey, options as json object that can be expiry time : 
-                  algorithm: Specifies the signing algorithm (default is HS256).
-                  expiresIn: Sets the expiration time (e.g., "1h", "2d").
-                  notBefore: Specifies the time before which the JWT must not be accepted (e.g., "2h" for 2 hours in the future).
+## Implementing Secure Token Management with HTTP Cookies in Node.js :
+- generate access token and refresh token , adding this methods to model =>
+      jwt.sign() method is used for generating jwt token which takes 3 parameter payload, secretOrPrivateKey, options as json object that can be expiry time : 
+          algorithm: Specifies the signing algorithm (default is HS256).
+          expiresIn: Sets the expiration time (e.g., "1h", "2d").
+          notBefore: Specifies the time before which the JWT must not be accepted (e.g., "2h" for 2 hours in the future).
 
-        - To verify JWT : Using jwt.verify()
-              verify(token: string, secretOrPublicKey: jwt.Secret)
+- To verify JWT : Using jwt.verify()
+      verify(token: string, secretOrPublicKey: jwt.Secret)
 
-              Synchronously verify given token using a secret or a public key to get a decoded token token - JWT string to verify secretOrPublicKey - Either the secret for HMAC algorithms, or the PEM encoded public key for RSA and ECDSA. [options] - Options for the verification returns - The decoded token. 
+      Synchronously verify given token using a secret or a public key to get a decoded token token - JWT string to verify secretOrPublicKey - Either the secret for HMAC algorithms, or the PEM encoded public key for RSA and ECDSA. [options] - Options for the verification returns - The decoded token. 
           
 
 
