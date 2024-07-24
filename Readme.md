@@ -107,14 +107,14 @@ connect() is used to connect DB
 
 ## Comprehensive Guide to User Registration with Access and Refresh Tokens in Node.js 
 A refresh token is saved both on the client side and server side (in the database). When the access token expires, the refresh token is used to renew it, preventing the need for frequent logins. To achieve this, we create an endpoint that matches the access token with the refresh token.
-    - req body -> data
-    - username or email 
-    - find the user
-        - if not give appropriate message and also suggest to redirect to register pages 
-        - if present : password check
-            - if not match -> give error mssage
-            - if match -> generate access and refresh token 
-            - send cookies -> token
+  - req body -> data
+  - username or email 
+  - find the user
+      - if not give appropriate message and also suggest to redirect to register pages 
+      - if present : password check
+           - if not match -> give error mssage
+           - if match -> generate access and refresh token 
+           - send cookies -> token
 ## Implementing Secure Token Management with HTTP Cookies in Node.js :
 - generate access token and refresh token , adding this methods to model =>
       jwt.sign() method is used for generating jwt token which takes 3 parameter payload, secretOrPrivateKey, options as json object that can be expiry time : 
