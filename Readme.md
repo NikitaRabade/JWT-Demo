@@ -123,9 +123,9 @@ A refresh token is saved both on the client side and server side (in the databas
           notBefore: Specifies the time before which the JWT must not be accepted (e.g., "2h" for 2 hours in the future).
 
 - To verify JWT : Using jwt.verify()
-      verify(token: string, secretOrPublicKey: jwt.Secret)
+    - verify(token: string, secretOrPublicKey: jwt.Secret)
 
-      Synchronously verify given token using a secret or a public key to get a decoded token token - JWT string to verify secretOrPublicKey - Either the secret for HMAC algorithms, or the PEM encoded public key for RSA and ECDSA. [options] - Options for the verification returns - The decoded token. 
+        - Synchronously verify given token using a secret or a public key to get a decoded token token - JWT string to verify secretOrPublicKey - Either the secret for HMAC algorithms, or the PEM encoded public key for RSA and ECDSA. [options] - Options for the verification returns - The decoded token. 
           
 
 
