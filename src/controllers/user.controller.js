@@ -153,7 +153,7 @@ const loginUser = asyncHandler ( async (req, res) => {
     const isPasswordValid = await user.isPasswordCorrect(password);
 
     if(!isPasswordValid){
-        throw new ApiError(401, "Wrong Incorrect");
+        throw new ApiError(401, "Incorrect Password");
     }
 
     const {accessToken, refreshToken} = await generateAccessAndRefreshToken(user._id);
@@ -228,12 +228,12 @@ const refreshAcessToken = asyncHandler( async (req, res) => {
 
     const incomingRefreshToken = req.cookies.refreshAcessToken || req.body.refreshAcessToken;
 
-    if(refreshToken){
+    if(!incomingRefreshToken){
         throw new ApiError(401, "Unauthorized request");
     }
 
     try {
-        const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+        const decodedToken = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
     
         const user = await User.findById(decodedToken._id);
     
