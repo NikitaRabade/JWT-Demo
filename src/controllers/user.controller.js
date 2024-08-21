@@ -270,8 +270,164 @@ const refreshAcessToken = asyncHandler( async (req, res) => {
 
 });
 
+const getUserChannelProfile = asyncHandler( async (req, res) => {
+    const { username } = req.params;
+
+    if(!username?.trim()){
+        throw new ApiError(400, "Username is missing!..");
+    }
+
+    const channel = await User.aggregate([
+        {
+            $match : {
+                username : username?.toLowerCase()
+            }
+        },
+        //to find subscriber of your account
+        {
+            $lookup :{
+                from : "subscriptions",
+                localField : "_id",
+                foreignField : "channel",
+                as : "subscribers"
+            }
+        },
+        //to find how many you subscribed to other
+        {
+            $lookup : {
+                from : "subscriptions",
+                localField : "_id",
+                foreignField : "subscriber",
+                as : "subscribedTo"
+            }
+        },
+        {
+            $addFields : {
+                subscribersCount : {
+                    $size : "$subscribers"
+                },
+                channelsToSubscribedToCount : {
+                    $size : "$subscribedTo"
+                },
+                isSubscribed : {
+                    $cond : {
+                        if : {$in : [req.user?._id, "$subscribers.subscriber"]},
+                        then : true,
+                        else : false
+                    }
+                }
+            }
+        },
+        {
+            //to pass only selected feilds
+            $project : {
+                fullName : 1,
+                username : 1,
+                subscribersCount : 1,
+                channelsToSubscribedToCount : 1,
+                isSubscribed : 1,
+                avatar : 1,
+                coverImage : 1,
+                email : 1
+            }
+        }
+    ]);
+
+    //console.log(channel);
+
+    if(!channel?.length){
+        throw new ApiError(400, "channel does not exists");
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, channel[0], "User channel fetched successfully")
+    );
+
+});
+
+const getWatchHistory = asyncHandler( async (req, res) => {
+    //to get history
+    /*
+    user model have watch history feilds that stores array contains ids of video
+    hence we need to join user model and video model
+    But video model also stores owner feild that signifies owner of user or user who posted that video
+    the owner info is in user , hence to get owner info we need to agin join to user model makes nested join
+    or nested lookup */
+    /* _
+    id : ObjectId('skjhgyuak,mnbdgks') user._id will give 'skjhgyuak,mnbdgks' which is string it is not id
+    the id it whole :  ObjectId('skjhgyuak,mnbdgks') hence to get we can use mongoose.
+    Mongoose will internally automatically converts _id(user._id) to mongodb _id
+    */
+    //In aggregation pipeline , mongoose will not work, it will directly to db not through mongoose
+    //lookup return array
+    const user = await User.aggregate([
+        {
+            $match :{
+                _id : new mongoose.Types.ObjectId(req.user._id)
+            }
+        },
+        {
+            $lookup :{
+                from : "videos",
+                localField : "watchHistory",
+                foreignField : "_id",
+                as : "watchHistory",
+                //here we get all watchhistory ids and all feilds
+                //now we want owner feild to populate or get owner details from user hence nested join
+                //nested pipelines for each document
+                pipeline : [
+                    {
+                        $lookup : {
+                            from : "users",
+                            localField : "owner",
+                            foreignField : "_id",
+                            as : "owner",
+                            //now we get watchhistory and also the owner of videos
+                            //now which feilds should pass or consider again pipeline
+                            //we we can use it here also or outside
+                            pipeline : [
+                                {
+                                    $project : {
+                                        fullName : 1,
+                                        username : 1,
+                                        avtar : 1
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    //it will return owner array, that means it will inner array and outer array is watchhistory
+                    //hence to make it eays we apply another pipeline in main watchhistory
+                    {
+                        $addFields : {
+                            owner : {
+                                $first : "$owner"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]);
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(
+            200,
+            user[0].watchHistory,
+            "Watch history fetched successfully"
+        )
+    )
+});
+
+
 export { registerUser, 
     loginUser,
     logoutUser,
-    refreshAcessToken
+    refreshAcessToken,
+    getUserChannelProfile,
+    getWatchHistory
 };
